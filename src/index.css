@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+#filter-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 40%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
+#sort-and-filter-form {
+  width: 100%;
+}
+.checkbox-div {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  width: 40%;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
