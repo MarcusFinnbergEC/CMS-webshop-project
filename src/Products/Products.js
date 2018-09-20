@@ -23,7 +23,7 @@ class Products extends Component {
             <p className="post-art-text">{product.Description}</p>
           </article>
           <footer className="post-footer">
-            <em className="price">{product.Price} SEK</em>
+              <em className="price">{product.Price} SEK</em>
               <NavLink to={`/collection/${product.id}`}><button className="product-button">Go to Product</button></NavLink>
           </footer>
         </div>

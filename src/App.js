@@ -56,11 +56,11 @@ class App extends Component {
           products.push(<li href="/" onClick={() => this.getProducts(x+1)}>{x+1}</li>);
       }*/
       let products = this.state.products.map((product) => {
-          return <Products product={product} />
+          return <Products product={product} key={product._id}/>
       });
 
     return (
-        <div>
+        <div className="app-body-div">
         <Header />
         <header>
         <div id="sort-and-filter-div">

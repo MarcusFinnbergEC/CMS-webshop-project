@@ -55,16 +55,18 @@ class FormReviews extends Component {
     render() {
         return (
         <div>
-            <form onSubmit={this.postReview.bind(this)} ref="clearForm">
+            <form className="review-form" onSubmit={this.postReview.bind(this)} ref="clearForm">
                 <header>
                     <h5>Review it!</h5>
                 </header>
-                <textarea type="text" ref="review" required minlength="8" maxlength="500" placeholder="Review" rows="7" cols="50" onChange={this.getInputValue.bind(this)}/>
                 <div>
-                <input type="text" ref="author" placeholder="Name" required onChange={this.getInputValue.bind(this)}/>
-                <input type="number" ref="rating" required placeholder="Rating (1-5)" min="1" max="5" onChange={this.getInputValue.bind(this)}/>
+                    <div>
+                        <input type="text" ref="author" placeholder="Name" required onChange={this.getInputValue.bind(this)}/>
+                        <input type="number" ref="rating" required placeholder="Rating (1-5)" min="1" max="5" onChange={this.getInputValue.bind(this)}/>
+                        <button type="submit">Send review</button>
+                    </div>
+                    <textarea type="text" ref="review" required minlength="8" maxlength="500" placeholder="Review" onChange={this.getInputValue.bind(this)}/>
                 </div>
-                <button type="submit">Send review</button>
             </form>
         </div>
         )

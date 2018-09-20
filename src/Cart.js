@@ -1,5 +1,22 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 import Header from './Header';
+
+/*array.map((product, i) => {
+                    console.log("product: ", product);
+                    if(product.id === clickedItem.id) {
+                        if (product.amount >= 1 || !product.hasOwnProperty("Amount")) {
+                            return array.splice([i], 1);
+                        }
+                        else {
+                            return array;
+                        }
+
+                    }
+                    console.log("arrayen: ", array);
+                    return array;
+
+                });*/
 
 class Cart extends Component {
     constructor() {
@@ -15,11 +32,26 @@ class Cart extends Component {
             products: JSON.parse(localStorage.getItem('order')),
         })
     }
+    updateState(newArray) {
+        console.log("Update körs");
+        console.log(this.state.products.length);
+        if(newArray.length === 0) {
+          this.clearCart();
+        }
+        else {
+            this.setState({
+                products: JSON.parse(localStorage.getItem('order')),
+            });
+        }
+    }
     clearCart() {
-
+        localStorage.clear();
+        this.setState({
+            products: null
+        })
     }
     render() {
-        if(this.state.products){
+        if(this.state.products !== null){
 
             /*Helper-function to only show one row per product*/
             let totalPrice = 0;
@@ -43,9 +75,28 @@ class Cart extends Component {
                 return Object.values(hash);
             }
 
+            function removeProduct(clicked) {
+                let clickedItem = clicked;
+                let array = this.state.products;
+                let newArray = [];
+                array.forEach((product) => {
+                    if(product.id !== clickedItem.id) {
+                        newArray.push(product);
+                    }
+                });
+                localStorage.setItem('order', JSON.stringify(array));
+                if (localStorage.order !== []) {
+                    localStorage.setItem('order', JSON.stringify(newArray));
+                }
+                else {
+                    localStorage.clear();
+                }
+                this.updateState(newArray);
+            }
+
             let cartProduct = showUnique(this.state.products).map(product => {
                 return (
-                    <div className="cart-product-display-div" key={product.id}>
+                    <div className="cart-product-display-div" key={product._id}>
                         <div className="cart-image-div">
                             <img className="cart-product-image" src={`http://localhost:1337${product.Image.url}`} alt=""/>
                         </div>
@@ -65,6 +116,7 @@ class Cart extends Component {
                         </div>
                         <div className="cart-tot-price-div">
                             <p>Tot. price: {product.amount * product.Price}</p>
+                            <button onClick={removeProduct.bind(this, product)}>Remove</button>
                         </div>
                     </div>
                 )
@@ -74,6 +126,8 @@ class Cart extends Component {
                     <Header />
                     <div id="wrapper-cart-comp">
                         <div className="cart-div">
+                            <h3>My Cart</h3>
+                            <button className="clear-cart-button" onClick={this.clearCart.bind(this)}>Clear Cart</button>
                             {cartProduct}
                             <div className="cart-total-sum-div">
                                 <div>
@@ -94,15 +148,25 @@ class Cart extends Component {
                         <div className="cart-form-div">
                             <h3>Buyer Information</h3>
                             <form className="buyer-form" action="">
-                                <input type="text" placeholder="First Name"/>
-                                <input type="text" placeholder="Last Name"/>
-                                <input type="number" placeholder="Phone"/>
-                                <input type="email" placeholder="E-mail"/>
-                                <input type="text" placeholder="Street"/>
-                                <input type="text" placeholder="Zip Code"/>
-                                <input type="text" placeholder="City"/>
-                                <input type="text" placeholder="Country"/>
-                                <input type="submit" value="Place Order"/>
+                                <div>
+                                    <input type="text" placeholder="First Name"/>
+                                    <input type="text" placeholder="Last Name"/>
+                                </div>
+                                <div>
+                                    <input type="number" placeholder="Phone"/>
+                                    <input type="email" placeholder="E-mail"/>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Street"/>
+                                    <input type="text" placeholder="Zip Code"/>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="City"/>
+                                    <input type="text" placeholder="Country"/>
+                                </div>
+                                <div>
+                                    <input type="submit" value="Place Order"/>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -116,19 +180,30 @@ class Cart extends Component {
                     <div id="wrapper-cart-comp">
                         <div className="cart-div">
                             <b>There are no products in your cart</b>
+                            <p>Click <NavLink className="nav-link" to={"/"}><b>HERE</b></NavLink> to see our products</p>
                         </div>
                         <div className="cart-form-div">
                             <h3>Buyer Information</h3>
                             <form className="buyer-form" action="">
-                                <input type="text" placeholder="First Name"/>
-                                <input type="text" placeholder="Last Name"/>
-                                <input type="number" placeholder="Phone"/>
-                                <input type="email" placeholder="E-mail"/>
-                                <input type="text" placeholder="Street"/>
-                                <input type="text" placeholder="Zip Code"/>
-                                <input type="text" placeholder="City"/>
-                                <input type="text" placeholder="Country"/>
-                                <input type="submit" value="Place Order"/>
+                                <div>
+                                    <input type="text" placeholder="First Name"/>
+                                    <input type="text" placeholder="Last Name"/>
+                                </div>
+                                <div>
+                                    <input type="number" placeholder="Phone"/>
+                                    <input type="email" placeholder="E-mail"/>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="Street"/>
+                                    <input type="text" placeholder="Zip Code"/>
+                                </div>
+                                <div>
+                                    <input type="text" placeholder="City"/>
+                                    <input type="text" placeholder="Country"/>
+                                </div>
+                                <div>
+                                    <input type="submit" value="Place Order"/>
+                                </div>
                             </form>
                         </div>
                     </div>
