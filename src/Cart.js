@@ -116,7 +116,7 @@ class Cart extends Component {
                         </div>
                         <div className="cart-tot-price-div">
                             <p>Tot. price: {product.amount * product.Price}</p>
-                            <button onClick={removeProduct.bind(this, product)}>Remove</button>
+                            <button className="remove-product-button" onClick={removeProduct.bind(this, product)}>X</button>
                         </div>
                     </div>
                 )

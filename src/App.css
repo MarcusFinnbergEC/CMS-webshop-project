@@ -169,13 +169,19 @@ input[type="radio"]{
   height: 70%;
   width: auto;
   flex-direction: row;
+  margin-left: 25px;
 }
 .skater-filter-div {
   width: auto;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: wrap;
   box-sizing: border-box;
+}
+.skater-filter-div > .sub-headline-filter {
+  width: auto;
+  margin-right: 75%;
 }
 .checkbox-div{
   width: auto;
@@ -746,11 +752,18 @@ input:focus {
   border: 1.5px solid dodgerblue;
   border-radius: 10px;
 }
+.buyer-form > div > input:focus{
+  border: orangered 1.5px solid;
+}
 .buyer-form > div > input[type="submit"]{
   background-color: dodgerblue;
   border: 1px solid dodgerblue;
   padding: 10px;
-}.cart-div > p > .nav-link {
+}
+.buyer-form > div > input[type="submit"]:hover{
+  cursor: pointer;
+}
+.cart-div > p > .nav-link {
   color: orangered;
   font-style: italic;
  }
@@ -774,4 +787,16 @@ input:focus {
    border-radius: 10px;
    margin-bottom: 25px;
    box-shadow: #222222 3px 3px 3px;
+ }
+ .remove-product-button {
+   background-color: #222222;
+   color: white;
+   border: 1px #222222 solid;
+   border-radius: 10px;
+   box-sizing: border-box;
+   padding: 5px 10px;
+   margin-left: 10px;
+ }
+ button:hover{
+   cursor: pointer;
  }
